@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    platform: linux/x86_64 # M1 Mac対応
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mywordpress
+      MYSQL_DATABASE: wordpress # DB名
+      MYSQL_USER: wordpress # DBユーザー名
+      MYSQL_PASSWORD: wordpress # DBパスワード
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    volumes:
+      - ./wp:/var/www/html
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress # DB名
+      WORDPRESS_DB_USER: wordpress # DBユーザー名
+      WORDPRESS_DB_PASSWORD: wordpress # DBパスワード
+
+volumes:
+  db_data:
