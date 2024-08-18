@@ -14,7 +14,7 @@ Simple wordpress app with docker compose
 docker-compose up -d
 ```
 
-Open `localhost:8000` now you can access your app and Install wordpress in the (local) server. Now you can develop.
+Open `localhost:8000` from there you can access your app and Install wordpress in the (local) server. Once installed, you can develop.
 When you need to access admin page, access `localhost:8000/wp-login.php`
 
 ### Delete and rebuild the app
